@@ -41,3 +41,36 @@
 .boom {
   background-color: red;
 }
+
+.buttons {
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.move-laser {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.move-laser button {
+  padding: 10px 20px;
+  background-color: blueviolet;
+  color: antiquewhite;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.fire-laser button {
+  padding: 10px 20px;
+  background-color: crimson;
+  color: antiquewhite;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+}

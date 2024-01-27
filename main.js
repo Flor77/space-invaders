@@ -53,6 +53,24 @@ function moveShooter(e) {
 
 document.addEventListener("keydown", moveShooter);
 
+const rightButton = document.getElementById("rightButton");
+const leftButton = document.getElementById("leftButton");
+
+rightButton.addEventListener("click", moveShooterRight);
+leftButton.addEventListener("click", moveShooterLeft);
+
+function moveShooterRight() {
+  squares[currentShooterIndex].classList.remove("shooter");
+  if (currentShooterIndex % width < width - 1) currentShooterIndex += 1;
+  squares[currentShooterIndex].classList.add("shooter");
+}
+
+function moveShooterLeft() {
+  squares[currentShooterIndex].classList.remove("shooter");
+  if (currentShooterIndex % width !== 0) currentShooterIndex -= 1;
+  squares[currentShooterIndex].classList.add("shooter");
+}
+
 function moveInvaders() {
   const leftEdge = alienInvaders[0] % width === 0;
   const rightEdge =
@@ -95,33 +113,38 @@ function moveInvaders() {
 invadersId = setInterval(moveInvaders, 600);
 
 function shoot(e) {
-  let laserId;
-  let currentLaserIndex = currentShooterIndex;
+  if ((e && e.key === "ArrowUp") || !e) {
+    let laserId;
+    let currentLaserIndex = currentShooterIndex;
 
-  function moveLaser() {
-    squares[currentLaserIndex].classList.remove("laser");
-    currentLaserIndex -= width;
-    squares[currentLaserIndex].classList.add("laser");
-
-    if (squares[currentLaserIndex].classList.contains("invader")) {
+    function moveLaser() {
       squares[currentLaserIndex].classList.remove("laser");
-      squares[currentLaserIndex].classList.remove("invader");
-      squares[currentLaserIndex].classList.add("boom");
+      currentLaserIndex -= width;
+      squares[currentLaserIndex].classList.add("laser");
 
-      setTimeout(
-        () => squares[currentLaserIndex].classList.remove("boom"),
-        300
-      );
-      clearInterval(laserId);
+      if (squares[currentLaserIndex].classList.contains("invader")) {
+        squares[currentLaserIndex].classList.remove("laser");
+        squares[currentLaserIndex].classList.remove("invader");
+        squares[currentLaserIndex].classList.add("boom");
 
-      const alienRemoved = alienInvaders.indexOf(currentLaserIndex);
-      aliensRemoved.push(alienRemoved);
-      results++;
-      resultDisplay.innerHTML = results;
+        setTimeout(
+          () => squares[currentLaserIndex].classList.remove("boom"),
+          300
+        );
+        clearInterval(laserId);
+
+        const alienRemoved = alienInvaders.indexOf(currentLaserIndex);
+        aliensRemoved.push(alienRemoved);
+        results++;
+        resultDisplay.innerHTML = results;
+      }
     }
-  }
 
-  if (e.key === "ArrowUp") laserId = setInterval(moveLaser, 100);
+    laserId = setInterval(moveLaser, 100);
+  }
 }
 
 addEventListener("keydown", shoot);
+document.getElementById("fireButton").addEventListener("click", function () {
+  shoot();
+});
