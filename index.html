@@ -2,25 +2,29 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Space Invaders</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
   <div class="container">
-    <h1 class="results">0</h1>
-    <div class="grid"></div>
-    <div class="buttons">
-      <div class="move-laser">
-        <button id="rightButton">Right</button>
-        <button id="leftButton">Left</button>
+    <div class="start-screen">
+      <button id="startButton">Start</button>
+    </div>
+    <div class="game-screen">
+      <h1 class="results">0</h1>
+      <div class="grid"></div>
+      <div class="buttons">
+        <div class="move-laser">
+          <button id="rightButton">Right</button>
+          <button id="leftButton">Left</button>
+        </div>
+        <div class="fire-laser">
+          <button id="fireButton">Fire</button>
+        </div>
       </div>
-      <div class="fire-laser">
-        <button id="fireButton">Fire</button>
-      </div>
-
     </div>
   </div>
   <script src="main.js"></script>

@@ -5,10 +5,44 @@
 
 .container {
   display: flex;
-  margin: 50px auto;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
   height: 100vh;
+}
+
+.game-screen {
+  display: none;
+}
+
+.start-screen {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.start-screen button {
+  padding: 20px;
+  background-color: blueviolet;
+  color: antiquewhite;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.start-screen::before {
+  content: "";
+  position: absolute;
+  /* top: 0; */
+  /* left: 0; */
+  width: 100vw;
+  height: 100vh;
+  background: url("aliens.jpg") center/cover no-repeat;
+  /* filter: blur(10px); */
+  z-index: -1;
 }
 
 .grid {
